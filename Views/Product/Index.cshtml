@@ -1,0 +1,36 @@
+﻿@model IEnumerable<ShoppingCartTest.Models.Product>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create </a>
+</p>
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">@Html.DisplayFor(modelItem => item.Name)</h5>
+                    <p class="card-text">
+                        <strong>Category:</strong> @Html.DisplayFor(modelItem => item.Catagory)<br />
+                        <strong>Description:</strong> @Html.DisplayFor(modelItem => item.Description)<br />
+                        <strong>Price:</strong> @Html.DisplayFor(modelItem => item.Price)<br />
+                        <strong>Quantity:</strong> @Html.DisplayFor(modelItem => item.Quantity)<br />
+                    </p>
+                    <div class="btn-group">
+                        @Html.ActionLink("Update", "UpdateProduct", new { id=item.Id  }, new { @class = "btn btn-primary" })
+                        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }, new { @class = "btn btn-secondary" })
+                        @Html.ActionLink("Delete", "Delete", new {  id=item.Id }, new { @class = "btn btn-danger" })
+                        @Html.ActionLink("AddToCart", "Create","Cart", new { id=item.Id,name=item.Name,description=item.Description,price=item.Price,catagory=item.Catagory,quantity=item.Quantity}, new { @class = "btn btn-warning" })
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
